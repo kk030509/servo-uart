@@ -59,7 +59,10 @@ uint8_t rxData;
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	 HAL_UART_Receive_IT(&huart2, &rxData, 1);
+}
 /* USER CODE END 0 */
 
 /**
@@ -70,7 +73,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+HAL_UART_Receive_IT(&huart2, &rxData, 1);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -106,7 +109,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_UART_Receive(&huart2, &rxData, 1, 1000);
+	  //HAL_UART_Receive(&huart2, &rxData, 1, 1000);
 	  HAL_Delay(200);
 	  if( rxData == 'a')
 	  {
